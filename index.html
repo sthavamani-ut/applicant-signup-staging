@@ -1,6 +1,57 @@
-<form __biza="WJ__" accept-charset="UTF-8" action="https://app.qa.usertesting.com/applicants/applicants"
-  id="be-a-tester-form" method="post">
-  <div class="email-input"> <input id="email_input" name="applicant[email]" placeholder="Email address"
-      required="required" type="email"> <button class="button button-submit button-cta" name="" type="submit"
-      value="Sign me up!">Sign me up!</button></div>
-</form>
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Be a Tester</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Be a Tester" name="keywords">
+  <meta content="Be a Tester" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script>
+    const form = document.getElementById('be-a-tester-form');
+    const stackSubdomainInput = document.getElementById('stack_subdomain');
+    const emailInput = document.getElementById('email_input');
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const stackSubdomain = stackSubdomainInput.value;
+      const email = emailInput.value;
+      const actionUrl = `https://${stackSubdomain}.usertesting.com/applicants/applicants`;
+      form.action = actionUrl;
+      form.submit();
+    });
+  </script>
+</head>
+
+<body style="margin: 2em">
+  <h1>Create a tester account</h1>
+  <form __biza="WJ__" accept-charset="UTF-8" action="https://app.qa.usertesting.com/applicants/applicants"
+    id="be-a-tester-form" method="post">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="stack_subdomain" class="" form-control">Staging stack subdomain</label>
+        <input class="form-control" id="stack_subdomain" name="stack_subdomain" placeholder="Stack subdomain"
+          type="text" value="app.qa">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7">
+        <input id="email_input" class="form-control" name="applicant[email]" placeholder="Email address"
+          required="required" type="email">
+      </div>
+      <div class="col-5 ta-right d-grid">
+        <button class="btn btn-primary" class="form-control" name="" type="submit" value="Sign me up!">Sign me
+          up!</button>
+      </div>
+    </div>
+    </div>
+  </form>
+</body>
