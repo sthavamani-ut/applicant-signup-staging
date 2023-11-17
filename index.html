@@ -16,38 +16,47 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script>
-    const form = document.getElementById('be-a-tester-form');
-    const stackSubdomainInput = document.getElementById('stack_subdomain');
-    const emailInput = document.getElementById('email_input');
 
-    form.addEventListener('submit', (event) => {
+
+    function configureStack(event) {
       event.preventDefault();
+
+      const form = document.getElementById('be-a-tester-form');
+      const stackSubdomainInput = document.getElementById('stack_subdomain');
+
       const stackSubdomain = stackSubdomainInput.value;
-      const email = emailInput.value;
-      const actionUrl = `https://${stackSubdomain}.usertesting.com/applicants/applicants`;
+      const actionUrl = `https://${stackSubdomain}.qa.usertesting.com/applicants/applicants`;
+
       form.action = actionUrl;
+
+      console.log("Action", form.action);
       form.submit();
-    });
+    };
   </script>
 </head>
 
 <body style="margin: 2em">
   <h1>Create a tester account</h1>
-  <form __biza="WJ__" accept-charset="UTF-8" action="https://app.qa.usertesting.com/applicants/applicants"
-    id="be-a-tester-form" method="post">
-    <div class="row mb-3">
+  <form __biza="WJ__" accept-charset="UTF-8" id="be-a-tester-form" method="post" onsubmit="configureStack(event)">
+    <div class=" row mb-3">
       <div class="col">
-        <label for="stack_subdomain" class="" form-control">Staging stack subdomain</label>
-        <input class="form-control" id="stack_subdomain" name="stack_subdomain" placeholder="Stack subdomain"
-          type="text" value="app.qa">
+        <div class="form-floating mb-3">
+          <input class="form-control" id="stack_subdomain" name="stack_subdomain" type="text" value="app"
+            required="required">
+          <label for="floatingInput">Staging stack subdomain</label>
+          <hint class="form-text text-muted ms-1">The subdomain of the staging stack you want to create a tester account
+            on.</hint>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-7">
-        <input id="email_input" class="form-control" name="applicant[email]" placeholder="Email address"
-          required="required" type="email">
+        <div class="form-floating mb-3">
+          <input id="email_input" class="form-control" name="applicant[email]" required="required" type="email">
+          <label for="floatingInput">Email address</label>
+        </div>
       </div>
-      <div class="col-5 ta-right d-grid">
+      <div class="col-5 ta-right d-grid pb-3">
         <button class="btn btn-primary" class="form-control" name="" type="submit" value="Sign me up!">Sign me
           up!</button>
       </div>
