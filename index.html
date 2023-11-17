@@ -16,7 +16,19 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script>
+    function updateEmail(_) {
+      const emailInput = document.getElementById('email_input');
+      const stagingEmail = document.getElementById('staging-email');
 
+      stagingEmail.innerText = emailInput.value;
+    }
+
+    function updateStack(_) {
+      const stackSubdomainInput = document.getElementById('stack_subdomain');
+      const stagingStack = document.getElementById('staging-stack');
+
+      stagingStack.innerText = `https://${stackSubdomainInput.value}.qa.usertesting.com`;
+    }
 
     function configureStack(event) {
       event.preventDefault();
@@ -42,17 +54,21 @@
       <div class="col">
         <div class="form-floating mb-3">
           <input class="form-control" id="stack_subdomain" name="stack_subdomain" type="text" value="app"
-            required="required">
+            required="required" onchange="updateStack(event)" onkeyup="updateStack(event)">
           <label for="floatingInput">Staging stack subdomain</label>
           <hint class="form-text text-muted ms-1">The subdomain of the staging stack you want to create a tester account
-            on.</hint>
+            on - currently set to post <strong><span id="staging-email" class="badge bg-secondary"></span></strong>
+            to <strong><span id="staging-stack"
+                class="badge bg-secondary">https://app.qa.usertesting.com</span></strong>
+          </hint>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-7">
         <div class="form-floating mb-3">
-          <input id="email_input" class="form-control" name="applicant[email]" required="required" type="email">
+          <input id="email_input" class="form-control" name="applicant[email]" required="required" type="email"
+            onchange="updateEmail(event)" onkeyup="updateEmail(event)">
           <label for="floatingInput">Email address</label>
         </div>
       </div>
