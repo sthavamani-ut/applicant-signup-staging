@@ -16,11 +16,27 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script>
+    function validateEmail(_) {
+      console.log('validateEmail');
+      const handleInput = document.getElementById('usertesting_handle');
+
+      const emailInput = document.getElementById('email_input');
+      const emailLabel = document.getElementById('email_label');
+      emailLabel.classList.remove('text-success', 'text-danger');
+      const re = /^\S+$/;
+      if (re.test(emailInput.value)) {
+        emailLabel.classList.add('text-success');
+      } else {
+        emailLabel.classList.add('text-danger');
+      }
+    }
+
     function updateEmail(_) {
       const emailInput = document.getElementById('email_input');
       const stagingEmail = document.getElementById('staging-email');
-
-      stagingEmail.innerText = emailInput.value;
+      const handleInput = document.getElementById('usertesting_handle');
+      stagingEmail.innerText = `${handleInput.value}+panelist@usertesting.com`;
+      emailInput.value = `${handleInput.value}+panelist@usertesting.com`;
     }
 
     function updateStack(_) {
@@ -35,7 +51,6 @@
 
       const form = document.getElementById('be-a-tester-form');
       const stackSubdomainInput = document.getElementById('stack_subdomain');
-
       const stackSubdomain = stackSubdomainInput.value;
       const actionUrl = `https://${stackSubdomain}.qa.usertesting.com/applicants/applicants`;
 
@@ -65,15 +80,23 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-7">
+      <div class="col-8">
         <div class="form-floating mb-3">
-          <input id="email_input" class="form-control" name="applicant[email]" required="required" type="email"
-            onchange="updateEmail(event)" onkeyup="updateEmail(event)">
-          <label for="floatingInput">Email address</label>
+          <input id="email_input" type="hidden" name="applicant[email]">
+          <input id="usertesting_handle" class="form-control" name="usertesting_handle" required="required" type="email"
+            onchange="updateEmail(event)" onkeyup="updateEmail(event); validateEmail(event)">
+          <label for="floatingInput" id="email_label">Usertesting username</label>
+          <hint class="form-text text-muted ms-1">The first segment of your email address eg <strong><span
+                class="badge bg-secondary">jblavos</span></strong> if your email is
+            <strong><span class="badge bg-secondary">jblavos@usertesting.com</span></strong>
+          </hint>
+          </hint>
         </div>
       </div>
-      <div class="col-5 ta-right d-grid pb-3">
-        <button class="btn btn-primary" class="form-control" name="" type="submit" value="Sign me up!">Sign me
+      <div class="col-4 text-end">
+        <button class="btn btn-primary p-3 px-5" class="form-control" name="" type="submit" value="Sign me up!"
+          class="mb-6">Sign
+          me
           up!</button>
       </div>
     </div>
