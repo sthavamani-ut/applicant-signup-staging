@@ -63,43 +63,34 @@
 </head>
 
 <body style="margin: 2em">
-  <h1>Create a tester account</h1>
-  <form __biza="WJ__" accept-charset="UTF-8" id="be-a-tester-form" method="post" onsubmit="configureStack(event)">
-    <div class=" row mb-3">
-      <div class="col">
+  <h2 class="p-1">Create a tester account with a UT username</h2>
+  <div class="card shadow border-0">
+    <form __biza="WJ__" accept-charset="UTF-8" id="be-a-tester-form" method="post" onsubmit="configureStack(event)">
+      <div class="card-body">
         <div class="form-floating mb-3">
-          <input class="form-control" id="stack_subdomain" name="stack_subdomain" type="text" value="app"
-            required="required" onchange="updateStack(event)" onkeyup="updateStack(event)">
-          <label for="floatingInput">Staging stack subdomain</label>
-          <hint class="form-text text-muted ms-1">The subdomain of the staging stack you want to create a tester account
-            on - currently set to post <strong><span id="staging-email" class="badge bg-secondary"></span></strong>
-            to <strong><span id="staging-stack"
-                class="badge bg-secondary">https://app.qa.usertesting.com</span></strong>
-          </hint>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-8">
-        <div class="form-floating mb-3">
+          <input id="stack_subdomain" name="stack_subdomain" type="hidden" value="app" required="required" disabled
+            onchange="updateStack(event)" onkeyup="updateStack(event)">
           <input id="email_input" type="hidden" name="applicant[email]">
-          <input id="usertesting_handle" class="form-control" name="usertesting_handle" required="required"
+          <input id="usertesting_handle" type="text" class="form-control" name="usertesting_handle" required="required"
             onchange="updateEmail(event)" onkeyup="updateEmail(event); validateEmail(event)">
           <label for="floatingInput" id="email_label">Usertesting username</label>
           <hint class="form-text text-muted ms-1">The first segment of your email address eg <strong><span
-                class="badge bg-secondary">jblavos</span></strong> if your email is
-            <strong><span class="badge bg-secondary">jblavos@usertesting.com</span></strong>
-          </hint>
+                class="badge bg-light text-muted">jblavos</span></strong> if your email is
+            <strong><span class="badge bg-light text-muted">jblavos@usertesting.com</span></strong>
           </hint>
         </div>
+        <div class="card p-3 pb-1 mb-4 shadow bg-primary-subtle border-0">
+          <h5 class="card-title">Create an account using <strong><span id="staging-email"
+                class="badge bg-primary text-white">+panelist@usertesting.com</span></strong></h5>
+        </div>
+        <div class="d-grid">
+          <button class="btn btn-primary p-2 px-5" class="form-control" name="" type="submit" value="Sign me up!"
+            class="mb-6">Sign
+            me
+            up!</button>
+        </div>
       </div>
-      <div class="col-4 text-end">
-        <button class="btn btn-primary p-3 px-5" class="form-control" name="" type="submit" value="Sign me up!"
-          class="mb-6">Sign
-          me
-          up!</button>
-      </div>
-    </div>
-    </div>
-  </form>
+    </form>
+  </div>
+
 </body>
