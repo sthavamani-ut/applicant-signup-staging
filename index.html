@@ -35,6 +35,13 @@
       const emailInput = document.getElementById('email_input');
       const stagingEmail = document.getElementById('staging-email');
       const handleInput = document.getElementById('usertesting_handle');
+      const creationHint = document.getElementById('creation-hint');
+      if (handleInput.value.length == 0) {
+        creationHint.classList.add('visually-hidden');
+        return;
+      } else {
+        creationHint.classList.remove('visually-hidden');
+      }
       stagingEmail.innerText = `${handleInput.value}+panelist@usertesting.com`;
       emailInput.value = `${handleInput.value}+panelist@usertesting.com`;
     }
@@ -79,7 +86,7 @@
             <strong><span class="badge bg-light text-muted">jblavos@usertesting.com</span></strong>
           </hint>
         </div>
-        <div class="card p-3 pb-1 mb-4 shadow bg-primary-subtle border-0">
+        <div id="creation-hint" class="card p-3 pb-1 mb-4 shadow bg-primary-subtle border-0 visually-hidden">
           <h5 class="card-title">Create an account using <strong><span id="staging-email"
                 class="badge bg-primary text-white">+panelist@usertesting.com</span></strong></h5>
         </div>
