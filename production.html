@@ -74,11 +74,11 @@
   <div class="card shadow border-0">
     <form __biza="WJ__" accept-charset="UTF-8" id="be-a-tester-form" method="post" onsubmit="configureStack(event)">
       <div class="card-body">
-        <!-- <div class="form-floating mb-3">
-          <input id="stack_subdomain" name="stack_subdomain" type="test" value="app" required="required"
+        <div class="form-floating mb-3">
+          <input id="stack_subdomain" name="stack_subdomain" type="hidden" value="app" required="required"
             onchange="updateStack(event)" onkeyup="updateStack(event)" class="form-control">
-          <label for="stack_subdomain" id="email_label">Usertesting subdomain</label>
-        </div> -->
+          <!-- <label for="stack_subdomain" id="email_label">Usertesting subdomain</label> -->
+        </div>
         <div class="form-floating mb-3">
           <input id="email_input" type="email" class="form-control" name="applicant[email]" required="required"
             onchange="updateEmail(event)" onkeyup="updateEmail(event); validateEmail(event)">
