@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Be a Tester</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Be a Tester" name="keywords">
+  <meta content="Be a Tester" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <script>
+    function validateEmail(_) {
+      console.log('validateEmail');
+      const handleInput = document.getElementById('usertesting_handle');
+
+      const emailInput = document.getElementById('email_input');
+      const emailLabel = document.getElementById('email_label');
+      emailLabel.classList.remove('text-success', 'text-danger');
+      const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (re.test(emailInput.value)) {
+        emailLabel.classList.add('text-success');
+      } else {
+        emailLabel.classList.add('text-danger');
+      }
+    }
+
+    function updateEmail(_) {
+      const emailInput = document.getElementById('email_input');
+      const stagingEmail = document.getElementById('staging-email');
+      const handleInput = document.getElementById('usertesting_handle');
+      const creationHint = document.getElementById('creation-hint');
+      if (emailInput.value.length == 0) {
+        creationHint.classList.add('visually-hidden');
+        return;
+      } else {
+        creationHint.classList.remove('visually-hidden');
+      }
+      stagingEmail.innerText = `${emailInput.value}`;
+
+    }
+
+    function updateStack(_) {
+      const stackSubdomainInput = document.getElementById('stack_subdomain');
+      const stagingStack = document.getElementById('staging-stack');
+
+      stagingStack.innerText = `https://${stackSubdomainInput.value}.usertesting.com`;
+    }
+
+    function configureStack(event) {
+      event.preventDefault();
+
+      const form = document.getElementById('be-a-tester-form');
+      const stackSubdomainInput = document.getElementById('stack_subdomain');
+      const stackSubdomain = stackSubdomainInput.value;
+      const actionUrl = `https://${stackSubdomain}.usertesting.com/applicants/applicants`;
+
+      form.action = actionUrl;
+
+      console.log("Action", form.action);
+      form.submit();
+    };
+  </script>
+</head>
+
+<body style="margin: 2em">
+  <h2 class="p-1">Create a tester account with a UT username</h2>
+  <div class="card shadow border-0">
+    <form __biza="WJ__" accept-charset="UTF-8" id="be-a-tester-form" method="post" onsubmit="configureStack(event)">
+      <div class="card-body">
+        <!-- <div class="form-floating mb-3">
+          <input id="stack_subdomain" name="stack_subdomain" type="test" value="app" required="required"
+            onchange="updateStack(event)" onkeyup="updateStack(event)" class="form-control">
+          <label for="stack_subdomain" id="email_label">Usertesting subdomain</label>
+        </div> -->
+        <div class="form-floating mb-3">
+          <input id="email_input" type="email" class="form-control" name="applicant[email]" required="required"
+            onchange="updateEmail(event)" onkeyup="updateEmail(event); validateEmail(event)">
+          <label for="email_input" id="email_label">Applicant email address</label>
+        </div>
+        <div id="creation-hint" class="card p-3 pb-1 mb-2 shadow bg-secondary-subtle border-0 visually-hidden">
+          <h5 class="card-title">Create an account using email <strong><span id="staging-email"
+                class="badge bg-primary text-white"></span></strong> on <strong><span id="staging-stack"
+                class="badge bg-primary text-white">https://app.usertesting.com</span></strong></h5>
+          <div class="d-grid mb-2 mt-2">
+            <button class="btn btn-primary p-2 px-5" class="form-control" name="" type="submit" value="Sign me up!"
+              class="mb-6">Sign
+              me
+              up!</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
