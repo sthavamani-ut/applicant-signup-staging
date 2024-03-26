@@ -50,7 +50,7 @@
       const stackSubdomainInput = document.getElementById('stack_subdomain');
       const stagingStack = document.getElementById('staging-stack');
 
-      stagingStack.innerText = `https://${stackSubdomainInput.value}.qa.usertesting.com`;
+      stagingStack.innerText = `https://${stackSubdomainInput.value}.staging-use2.usertesting.com`;
     }
 
     function configureStack(event) {
@@ -59,7 +59,7 @@
       const form = document.getElementById('be-a-tester-form');
       const stackSubdomainInput = document.getElementById('stack_subdomain');
       const stackSubdomain = stackSubdomainInput.value;
-      const actionUrl = `https://${stackSubdomain}.qa.usertesting.com/applicants/applicants`;
+      const actionUrl = `https://${stackSubdomain}.staging-use2.usertesting.com/applicants/applicants`;
 
       form.action = actionUrl;
 
